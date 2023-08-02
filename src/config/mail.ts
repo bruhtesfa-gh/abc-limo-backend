@@ -429,7 +429,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                                               class=t163
                                                                                               style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
                                                                                               width=160 height=auto
-                                                                                              src=https://atl-luxe-limo.netlify.app/baner.jpg />
+                                                                                              src=https://abc-limo.netlify.app/baner.jpg />
                                                                                       </div>
                                                                                   </td>
                                                                               </tr>
@@ -536,7 +536,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                   <a class=t233
                                                                       style="display:block;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:44px;font-weight:800;font-style:normal;font-size:12px;text-decoration:none;text-transform:uppercase;letter-spacing:2.4px;direction:ltr;color:#F8F8F8;text-align:center;mso-line-height-rule:exactly;mso-text-raise:10px;"
                                                                       target=_blank
-                                                                      href="https://atl-luxe-limo.netlify.app/">Explore
+                                                                      href="https://abc-limo.netlify.app/">Explore
                                                                       More</a>
                                                               </td>
                                                           </tr>
@@ -1246,7 +1246,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                   <!--[if mso]><td class=t114 style="width:600px;"><![endif]-->
                                                                   <p class=t120
                                                                       style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#888888;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;">
-                                                                      ATL LUXE Limo Services
+                                                                      ABC Limo Services
 
                                                                       111 W 11th St Ste 234
                                                                       Beverly Hills, LA 90209</p>
@@ -1267,15 +1267,15 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                   <p class=t110
                                                                       style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#888888;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;">
                                                                       <a class=t121
-                                                                          href=https://atl-luxe-limo.netlify.app/contact
+                                                                          href=https://abc-limo.netlify.app/contact
                                                                           style="font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
                                                                           target=_blank>Unsubscribe</a>  •  <a
                                                                           class=t122
-                                                                          href=https://atl-luxe-limo.netlify.app/contact
+                                                                          href=https://abc-limo.netlify.app/contact
                                                                           style="font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
                                                                           target=_blank>Privacy policy</a>  •  <a
                                                                           class=t123
-                                                                          href=https://atl-luxe-limo.netlify.app/contact
+                                                                          href=https://abc-limo.netlify.app/contact
                                                                           style="font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#878787;mso-line-height-rule:exactly;"
                                                                           target=_blank>Contact us</a>
                                                                   </p>

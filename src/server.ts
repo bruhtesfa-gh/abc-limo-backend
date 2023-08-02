@@ -20,8 +20,8 @@ app.use(
   cors({
     credentials: true,
     origin: [
-      "https://atl-luxe-limo.netlify.app",
-      "https://atl-luxe-limo-admin.netlify.app",
+      "https://abc-limo.netlify.app",
+      "https://abc-limo-admin.netlify.app",
       "https://limo-admin.onrender.com",
       "https://seattle-limo.onrender.com",
       "http://localhost:3000",
