@@ -29,7 +29,7 @@ app.use(
       "127.0.0.1:3000",
       "https://seattle-limos.onrender.com",
       "http://localhost",
-      "127.0.0.1"
+      "127.0.0.1",
       "https://abclimo1.netlify.app" ,
       "https://abclimo2.netlify.app" ,
       "https://abclimo3.netlify.app" ,
