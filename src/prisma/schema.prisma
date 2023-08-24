@@ -72,6 +72,7 @@ model Book {
   toAddress String
   email String
   phoneNumber String
+  driverGender String
   luggageCount Int
   personCount Int
   journeyDate DateTime
