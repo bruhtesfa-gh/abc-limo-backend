@@ -5,6 +5,7 @@ import vehicleRouter from "./vehicle.routes";
 import bookRouter from "./book.routes";
 import authRouter from "./auth.routes";
 import userRouter from "./user.routes";
+import serviceRouter from "./service.routes";
 import { catchAsync } from "../util/error";
 import { Blog, Book, User, Vehicle } from "../config/db";
 import { isAuth } from "../util/auth";
@@ -13,6 +14,7 @@ import { sendMail } from "../config/mail";
 router.use("/auth", authRouter);
 router.use("/blog", blogRouter);
 router.use("/book", bookRouter);
+router.use("/service", serviceRouter);
 router.use("/user", catchAsync(isAuth), userRouter);
 router.use("/vehicle", vehicleRouter);
 router.post("/mail", async (req, res) => {
