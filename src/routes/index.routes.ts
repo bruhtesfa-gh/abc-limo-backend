@@ -7,7 +7,7 @@ import authRouter from "./auth.routes";
 import userRouter from "./user.routes";
 import serviceRouter from "./service.routes";
 import { catchAsync } from "../util/error";
-import { Blog, Book, User, Vehicle } from "../config/db";
+import prisma, { Blog, Book, User, Vehicle } from "../config/db";
 import { isAuth } from "../util/auth";
 import { sendMail } from "../config/mail";
 
@@ -70,4 +70,28 @@ router.get(
     return res.json(req.user);
   })
 );
+router.get("/init", async (req, res) => {
+  try {
+    const user = await prisma.user.findMany({
+      where: {
+
+      }
+    });
+    if (user.length > 0) return res.status(200).json(user[0]);
+    const newUser = await prisma.user.create({
+      data: {
+        email: "abclimo2000@gmail.com",
+        lastName: "Andualem",
+        firstName: "Andualem",
+        password: "$2a$10$EZq8FjlPlFQJtctyPFfOfuYBRf1SAb57C/Kj1AzKUrgFfpSpzAQSG",
+        // password: "123456",
+      },
+    })
+    return res.status(200).json(newUser);
+
+  } catch (error) {
+    return res.status(500).send(error);
+    // throw new Error(error);
+  }
+})
 export default router;

@@ -18,7 +18,7 @@ export async function isAuth(req: Request, res: Response, next: NextFunction) {
 
   const user = await User.findUniqueOrThrow({
     where: {
-      id: decodedToken.sub,
+      id: decodedToken.sub as string,
     },
     select: {
       email: true,
