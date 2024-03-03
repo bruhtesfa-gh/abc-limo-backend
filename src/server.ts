@@ -12,8 +12,9 @@ import { User } from "./config/db";
 const PORT = process.env.PORT || 4040;
 
 const app = express();
-app.use(express.static(path.join(__dirname, "uploads")));
-app.use(express.static(path.join(__dirname, "static")));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use(express.static(path.join(__dirname, "uploads")));
+app.use('/static', express.static(path.join(__dirname, "static")));
 app.use(express.json());
 
 app.use(
@@ -31,9 +32,9 @@ app.use(
       "https://seattle-limos.onrender.com",
       "http://localhost",
       "127.0.0.1",
-      "https://abclimo1.netlify.app" ,
-      "https://abclimo2.netlify.app" ,
-      "https://abclimo3.netlify.app" ,
+      "https://abclimo1.netlify.app",
+      "https://abclimo2.netlify.app",
+      "https://abclimo3.netlify.app",
     ],
   })
 );

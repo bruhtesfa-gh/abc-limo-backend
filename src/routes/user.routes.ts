@@ -35,9 +35,7 @@ router.patch("/update-profile", [
       }
       const body = req.body;
       if (req.file) {
-        const publicId = await uploadImageToCloudinary(
-          path.join(__dirname, "../uploads/", req.file?.filename)
-        );
+        const publicId = (process.env.END_POINT as string) + "uploads/" + req.file?.filename, ;
         body["img"] = publicId;
       }
       const value = await userUpdateschema.validateAsync(body);

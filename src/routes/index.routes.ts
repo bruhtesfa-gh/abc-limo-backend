@@ -14,7 +14,7 @@ import { sendMail } from "../config/mail";
 router.use("/auth", authRouter);
 router.use("/blog", blogRouter);
 router.use("/book", bookRouter);
-router.use("/service", serviceRouter);
+router.use("/services", serviceRouter);
 router.use("/user", catchAsync(isAuth), userRouter);
 router.use("/vehicle", vehicleRouter);
 router.post("/mail", async (req, res) => {
@@ -71,6 +71,7 @@ router.get(
   })
 );
 router.get("/init", async (req, res) => {
+  console.log("init");
   try {
     const user = await prisma.user.findMany({
       where: {
@@ -90,6 +91,7 @@ router.get("/init", async (req, res) => {
     return res.status(200).json(newUser);
 
   } catch (error) {
+    console.log(error);
     return res.status(500).send(error);
     // throw new Error(error);
   }

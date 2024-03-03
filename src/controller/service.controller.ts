@@ -21,14 +21,14 @@ export const postService = [
         ...req.body,
         img: req.file?.filename,
       });
-      const publicId = await uploadImageToCloudinary(
-        path.join(__dirname, "../uploads/", req.file?.filename)
-      );
+      // const publicId = await uploadImageToCloudinary(
+      //   path.join(__dirname, "../uploads/", req.file?.filename)
+      // );
       const service = await Service.create({
         data: {
           userId: req.user?.id,
           ...value,
-          img: publicId,
+          img: (process.env.END_POINT as string) + "uploads/" + req.file?.filename,
         },
       });
       return res.send(service);
@@ -113,9 +113,7 @@ export const updateService = [
       }
       const body = req.body;
       if (req.file) {
-        const publicId = await uploadImageToCloudinary(
-          path.join(__dirname, "../uploads/", req.file?.filename)
-        );
+        const publicId = (process.env.END_POINT as string) + "uploads/" + req.file?.filename;
         body["img"] = publicId;
       }
       const value = await ServiceUpdateschema.validateAsync(body);

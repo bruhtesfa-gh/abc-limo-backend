@@ -1,35 +1,35 @@
 import nodemailer from "nodemailer";
 
 export async function sendMail(body: {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
 }) {
-  let transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL, // generated ethereal user
-      pass: process.env.EMAIL_PASSWORD, //
-    },
-  });
-  await transporter.sendMail({
-    from: process.env.EMAIL, // sender address
-    to: process.env.TO_EMAIL, // list of receivers
-    subject: "Contact information", // Subject line
-    html: `
+    let transporter = nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL, // generated ethereal user
+            pass: process.env.EMAIL_PASSWORD, //
+        },
+    });
+    await transporter.sendMail({
+        from: process.env.EMAIL, // sender address
+        to: process.env.TO_EMAIL, // list of receivers
+        subject: "Contact information", // Subject line
+        html: `
     <b>Name:</b> ${body.name} <br/>
     <b>Email:</b> ${body.email} <br/>
     <b>Phone:</b> ${body.phone} <br/>
     <b>Message:</b> ${body.message} <br/>
 `, // html body
-  });
+    });
 }
 
 export const COMFIRMAION_EMAIL = (data: any) => {
-  return `<!DOCTYPE html
+    return `<!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
   xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
@@ -308,7 +308,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
 <body class=t0 style="min-width:100%;Margin:0px;padding:0px;background-color:#242424;">
   <div
       style="display:none; font-size:1px; color:#333333; line-height:1px; max-height:0px; max-width:0px; opacity:0; overflow:hidden;">
-      place</div>
+      ABC LIMO</div>
   <div style="font-size: 0px; line-height:0px; display: none; max-height: 0px; overflow: hidden;">
       &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
   </div>
@@ -402,9 +402,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                                                               <p class=t192
                                                                                                                   style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
                                                                                                                   Date:
-                                                                                                                  Dec
-                                                                                                                  23
-                                                                                                                  2022
+                                                                                                                  ${new Date().toLocaleDateString()}
                                                                                                               </p>
                                                                                                           </td>
                                                                                                       </tr>
@@ -429,7 +427,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                                               class=t163
                                                                                               style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
                                                                                               width=160 height=auto
-                                                                                              src=https://abc-limo.netlify.app/baner.jpg />
+                                                                                              src=${process.env.CLIENT_APP_URL}/baner.jpg />
                                                                                       </div>
                                                                                   </td>
                                                                               </tr>
@@ -536,7 +534,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                   <a class=t233
                                                                       style="display:block;font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:44px;font-weight:800;font-style:normal;font-size:12px;text-decoration:none;text-transform:uppercase;letter-spacing:2.4px;direction:ltr;color:#F8F8F8;text-align:center;mso-line-height-rule:exactly;mso-text-raise:10px;"
                                                                       target=_blank
-                                                                      href="https://abc-limo.netlify.app/">Explore
+                                                                      href="${process.env.CLIENT_APP_URL}">Explore
                                                                       More</a>
                                                               </td>
                                                           </tr>
@@ -1267,15 +1265,15 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                   <p class=t110
                                                                       style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#888888;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;">
                                                                       <a class=t121
-                                                                          href=https://abc-limo.netlify.app/contact
+                                                                          href=${process.env.CLIENT_APP_URL}contact
                                                                           style="font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
                                                                           target=_blank>Unsubscribe</a>  •  <a
                                                                           class=t122
-                                                                          href=https://abc-limo.netlify.app/contact
+                                                                          href=${process.env.CLIENT_APP_URL}contact
                                                                           style="font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
                                                                           target=_blank>Privacy policy</a>  •  <a
                                                                           class=t123
-                                                                          href=https://abc-limo.netlify.app/contact
+                                                                          href=${process.env.CLIENT_APP_URL}contact
                                                                           style="font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#878787;mso-line-height-rule:exactly;"
                                                                           target=_blank>Contact us</a>
                                                                   </p>

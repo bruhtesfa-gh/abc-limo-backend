@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { rm } from "fs/promises";
+import fs from "fs";
 import {
   VehiclePostschema,
   VehicleUpdateschema,
@@ -17,18 +18,20 @@ export const postVehicle = [
   uploads,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log(req)
       const value = await VehiclePostschema.validateAsync({
         ...req.body,
         userId: req.user?.id,
         img: req.file?.filename,
       });
-      const publicId = await uploadImageToCloudinary(
-        path.join(__dirname, "../uploads/", req.file?.filename)
-      );
+      // const publicId = await uploadImageToCloudinary(
+      //   path.join(__dirname, "../uploads/", req.file?.filename)
+      // );
+
       const car = await Vehicle.create({
         data: {
           ...value,
-          img: publicId,
+          img: (process.env.END_POINT as string) + "uploads/" + req.file?.filename,
         },
       });
       return res.send(car);
@@ -109,10 +112,11 @@ export const updateVehicle = [
       }
       const body = req.body;
       if (req.file) {
-        const publicId = await uploadImageToCloudinary(
-          path.join(__dirname, "../uploads/", req.file?.filename)
-        );
-        body["img"] = publicId;
+        // const publicId = await uploadImageToCloudinary(
+        //   path.join(__dirname, "../uploads/", req.file?.filename)
+        // );
+        if (fs.existsSync(path.join(__dirname, "../uploads/", req.file?.filename)))
+          body["img"] = (process.env.END_POINT as string) + "uploads/" + req.file?.filename;
       }
       const value = await VehicleUpdateschema.validateAsync(body);
       const updatedCar = await Vehicle.update({

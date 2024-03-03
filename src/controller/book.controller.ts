@@ -9,10 +9,12 @@ import CustomError from "../util/CustomeError";
 
 import nodemailer from "nodemailer";
 import { COMFIRMAION_EMAIL } from "../config/mail";
+import { Prisma } from "@prisma/client";
 
 export const postReservation = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const value = await BookPostschema.validateAsync(req.body);
+    console.log(value);
     const book = await Book.create({
       data: value,
       include: {
@@ -38,6 +40,28 @@ export const postReservation = catchAsync(
       to: book.email, // list of receivers
       subject: "Limousine Service Reservation Confirmation & Details", // Subject line
       html: COMFIRMAION_EMAIL(book), // html body
+    });
+
+    const ADMIN_EMAIL = (book: any) => {
+      return `<h1>You have a new reservation</h1>
+      <p>Name: ${book.firstName + " " + book.lastName}</p>
+      <p>Email: ${book.email}</p>
+      <p>Phone: ${book.phoneNumber}</p>
+      <p>Vehicle: ${book.vehicle.name}</p>
+      <p>Pickup: ${book.fromAddress}</p>
+      <p>Dropoff: ${book.toAddress}</p>
+      <p>Date: ${book.journeyDate}</p>
+      <p>Number of Passengers: ${book.personCount}</p>
+      <a href="${process.env.ADMIN_PANEL_END_POINT}reservations/${book.id}">Click here to view the reservation</a>`;
+    }
+
+    // lets notify the sender that their is new reservation
+    // notify the sender that there is a new reservation
+    await transporter.sendMail({
+      from: process.env.EMAIL, // sender address
+      to: process.env.EMAIL,  // list of receivers
+      subject: "New Reservation Created", // Subject line
+      html: ADMIN_EMAIL(book), // html body
     });
     return res.status(201).send(book);
   }

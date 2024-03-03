@@ -1,4 +1,4 @@
-// This is your Prisma schema file,
+// This is your Prisma schema file adapted for MySQL with,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
@@ -17,11 +17,13 @@ model User {
   img       String    @default("")
   email     String    @unique
   password  String
-  blog      Blog[]
-  vehicle   Vehicle[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Service   Service[]
+  blogs     Blog[] // Updated relation to 'blogs'
+  vehicles  Vehicle[] // Updated relation to 'vehicles'
+  service   Service[]
+
+  @@map(name: "user")
 }
 
 model Blog {
@@ -29,24 +31,13 @@ model Blog {
   title     String
   img       String
   content   String    @db.Text
-  user      User      @relation(fields: [userId], references: [id])
   userId    String
-  // published Boolean @default(false)
-  blog      Comment[]
+  user      User      @relation(fields: [userId], references: [id])
+  comments  Comment[] // Updated relation to 'comments'
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-}
 
-model Service {
-  id        String   @id @default(cuid())
-  title     String
-  img       String
-  content   String   @db.Text
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  // published Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@map(name: "blog")
 }
 
 enum VehicleType {
@@ -65,21 +56,23 @@ enum ReservationStatus {
 model Vehicle {
   id            String      @id @default(cuid())
   name          String
-  model         String
+  model         String      @default("")
   img           String
   description   String      @db.Text
-  speed         Float
+  speed         Float       @default(1)
   automatic     Int         @default(1)
   heatedSeat    Int         @default(1)
   gpsNavigation Int         @default(1)
   pricePerDay   Float
   type          VehicleType
   passengerSize Int
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  books         Book[] // Updated relation to 'books'
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  user          User        @relation(fields: [userId], references: [id])
-  userId        String
-  books         Book[]
+
+  @@map(name: "vehicle")
 }
 
 model Book {
@@ -94,11 +87,14 @@ model Book {
   personCount  Int
   journeyDate  DateTime
   description  String            @db.Text
+  driverGender String
   status       ReservationStatus @default(PENDING)
+  vehicleId    String
+  vehicle      Vehicle           @relation(fields: [vehicleId], references: [id])
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
-  vehicle      Vehicle           @relation(fields: [vehicleId], references: [id])
-  vehicleId    String
+
+  @@map(name: "book")
 }
 
 model Comment {
@@ -106,8 +102,23 @@ model Comment {
   fullName  String
   email     String
   comment   String   @db.Text
-  blog      Blog     @relation(fields: [blogId], references: [id])
   blogId    String
+  blog      Blog     @relation(fields: [blogId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map(name: "comment")
+}
+
+model Service {
+  id        String   @id @default(cuid())
+  title     String
+  img       String
+  content   String   @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "service")
 }
