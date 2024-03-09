@@ -6,7 +6,7 @@ export async function sendMail(body: {
     phone: string;
     message: string;
 }) {
-    let transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: 587,
         secure: false,
@@ -15,17 +15,30 @@ export async function sendMail(body: {
             pass: process.env.EMAIL_PASSWORD, //
         },
     });
+
+    //send email to confirm we resived the email
     await transporter.sendMail({
-        from: process.env.EMAIL, // sender address
-        to: process.env.TO_EMAIL, // list of receivers
-        subject: "Contact information", // Subject line
-        html: `
-    <b>Name:</b> ${body.name} <br/>
-    <b>Email:</b> ${body.email} <br/>
-    <b>Phone:</b> ${body.phone} <br/>
-    <b>Message:</b> ${body.message} <br/>
-`, // html body
+        from: process.env.EMAIL,
+        to: body.email,
+        subject: "Email Received Confirmation",
+        html: `<h1>Thank you for your email</h1> <p>We will get back to you as soon as possible</p>
+               <p>your massage : ${body.message}</p> `,
     });
+
+    await transporter.sendMail({
+        from: process.env.EMAIL,
+        to: process.env.EMAIL,
+        subject: "New contact email",
+        html: `<p>you have a new contact request</p>
+           <h3>Contact details</h3>
+           <ul>
+               <li>Name: ${body.name}</li>
+               <li>Email: ${body.email}</li>
+               <li>Phone: ${body.phone}</li>
+           </ul> <h3>Message</h3> <p>${body.message}</p>
+           `
+    });
+
 }
 
 export const COMFIRMAION_EMAIL = (data: any) => {
@@ -378,7 +391,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                                                                   style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
                                                                                                                   <span
                                                                                                                       class=t203
-                                                                                                                      style="font-weight:bold;mso-line-height-rule:exactly;">Booking
+                                                                                                                      style="font-weight:bold;mso-line-height-rule:exactly;">bodying
                                                                                                                       confirmation</span>
                                                                                                               </p>
                                                                                                           </td>
@@ -467,7 +480,7 @@ div.t3{mso-line-height-alt:45px !important;line-height:45px !important;display:b
                                                                   <!--[if mso]><td class=t207 style="width:600px;padding:0 0 22px 0;"><![endif]-->
                                                                   <p class=t213
                                                                       style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
-                                                                      Thank you for booking our limo service. We are
+                                                                      Thank you for bodying our limo service. We are
                                                                       excited to serve you! Our team will get in touch
                                                                       with you shortly to confirm all the details of
                                                                       your reservation.
