@@ -9,8 +9,9 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import { verifyToken } from "./util/token";
 import { User } from "./config/db";
+import axios from "axios";
 const PORT = process.env.PORT || 4040;
-
+const END_POINT = process.env.END_POINT || "https://abc-limo-server.onrender.com/"
 const app = express();
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // app.use(express.static(path.join(__dirname, "uploads")));
@@ -47,6 +48,15 @@ app.get("*", function (req, res) {
 app.use(rateLimit());
 app.listen(PORT, () => {
   console.log("Server started on port " + PORT);
+  // send test request every fifve mininute to keep server alive
+  setInterval(async () => {
+    try {
+      await axios.get(END_POINT + '/alive');
+    } catch (error) {
+      console.log(error);
+    }
+
+  }, 1000 * 60 * 5)
 });
 passportLocal(passport);
 //global error handler
