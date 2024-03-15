@@ -10,6 +10,7 @@ import {
 } from "../validation_schemas/user.schema";
 import { comparePassword, hashPassword } from "../util/password";
 import uploadImageToCloudinary from "../config/cloudinary";
+import { uploadLoacalToMyS3 } from "../util/file";
 const router = Router();
 const uploads = upload.single("img");
 const userPropertiestWithPassword = {
