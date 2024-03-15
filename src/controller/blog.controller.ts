@@ -11,6 +11,7 @@ import path from "path";
 import { catchAsync } from "../util/error";
 import CustomError from "../util/CustomeError";
 import uploadImageToCloudinary from "../config/cloudinary";
+import { uploadLoacalToMyS3 } from "../util/file";
 
 const uploads = upload.single("img");
 export const postBlog = [
