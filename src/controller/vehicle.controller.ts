@@ -12,13 +12,15 @@ import path from "path";
 import { catchAsync } from "../util/error";
 import CustomError from "../util/CustomeError";
 import uploadImageToCloudinary from "../config/cloudinary";
+import { boolean } from "joi";
+import axios from "axios";
+import { uploadLoacalToMyS3 } from "../util/file";
 
 const uploads = upload.single("img");
 export const postVehicle = [
   uploads,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req)
       const value = await VehiclePostschema.validateAsync({
         ...req.body,
         userId: req.user?.id,
@@ -27,11 +29,22 @@ export const postVehicle = [
       // const publicId = await uploadImageToCloudinary(
       //   path.join(__dirname, "../uploads/", req.file?.filename)
       // );
-
+      if (req.file) {
+        try {
+          value['img'] = process.env.S3URL + await uploadLoacalToMyS3(req.file.filename);
+          if (path.join(__dirname, "../uploads/", req.file.filename)) {
+            //if the validation fails, delete the uploaded file
+            await rm(path.join(__dirname, "../uploads/", req.file.filename));
+          }
+        } catch (error: any) {
+          return res.status(500).json({
+            msg: error.message
+          })
+        }
+      }
       const car = await Vehicle.create({
         data: {
-          ...value,
-          img: (process.env.END_POINT as string) + "uploads/" + req.file?.filename,
+          ...value
         },
       });
       return res.send(car);
@@ -115,8 +128,17 @@ export const updateVehicle = [
         // const publicId = await uploadImageToCloudinary(
         //   path.join(__dirname, "../uploads/", req.file?.filename)
         // );
-        if (fs.existsSync(path.join(__dirname, "../uploads/", req.file?.filename)))
-          body["img"] = (process.env.END_POINT as string) + "uploads/" + req.file?.filename;
+        try {
+          body['img'] = process.env.S3URL + await uploadLoacalToMyS3(req.file.filename);
+          if (path.join(__dirname, "../uploads/", req.file.filename)) {
+            //if the validation fails, delete the uploaded file
+            await rm(path.join(__dirname, "../uploads/", req.file.filename));
+          }
+        } catch (error: any) {
+          return res.status(500).json({
+            msg: error.message
+          })
+        }
       }
       const value = await VehicleUpdateschema.validateAsync(body);
       const updatedCar = await Vehicle.update({

@@ -21,12 +21,23 @@ export const postBlog = [
         ...req.body,
         img: req.file?.filename,
       });
-      const publicId = (process.env.END_POINT as string) + "uploads/" + req.file?.filename;
+      if (req.file) {
+        try {
+          value['img'] = process.env.S3URL + await uploadLoacalToMyS3(req.file.filename);
+          if (path.join(__dirname, "../uploads/", req.file.filename)) {
+            //if the validation fails, delete the uploaded file
+            await rm(path.join(__dirname, "../uploads/", req.file.filename));
+          }
+        } catch (error: any) {
+          return res.status(500).json({
+            msg: error.message
+          })
+        }
+      }
       const blog = await Blog.create({
         data: {
           userId: req.user?.id,
-          ...value,
-          img: publicId,
+          ...value
         },
       });
       return res.send(blog);
@@ -111,8 +122,20 @@ export const updateBlog = [
       }
       const body = req.body;
       if (req.file) {
-        const publicId = (process.env.END_POINT as string) + "uploads/" + req.file?.filename;
-        body["img"] = publicId;
+        // const publicId = await uploadImageToCloudinary(
+        //   path.join(__dirname, "../uploads/", req.file?.filename)
+        // );
+        try {
+          body['img'] = process.env.S3URL + await uploadLoacalToMyS3(req.file.filename);
+          if (path.join(__dirname, "../uploads/", req.file.filename)) {
+            //if the validation fails, delete the uploaded file
+            await rm(path.join(__dirname, "../uploads/", req.file.filename));
+          }
+        } catch (error: any) {
+          return res.status(500).json({
+            msg: error.message
+          })
+        }
       }
       const value = await BlogUpdateschema.validateAsync(body);
       const updatedBlog = await Blog.update({

@@ -10,7 +10,11 @@ import { catchAsync } from "../util/error";
 import prisma, { Blog, Book, User, Vehicle } from "../config/db";
 import { isAuth } from "../util/auth";
 import { sendMail } from "../config/mail";
-
+import axios from "axios";
+import axiosFormData from 'axios-form-data';
+import { createReadStream } from "fs";
+import FormData from "form-data";
+import path from "path";
 router.use("/auth", authRouter);
 router.use("/blog", blogRouter);
 router.use("/book", bookRouter);
@@ -95,5 +99,28 @@ router.get("/init", async (req, res) => {
     return res.status(500).send(error);
     // throw new Error(error);
   }
-})
+});
+router.get("/send-binary", async (req, res) => {
+  let data = null;
+  const form = new FormData();
+  form.append('str', 'my value');
+  form.append('img', createReadStream(path.join(__dirname, "../uploads/", "img-1708269089346-901584902.jpg")));
+  try {
+    // send post using axios and recive response
+    const response = await axios.post('http://localhost:8000/api/upload', form, {
+      headers: {
+        ...form.getHeaders(),
+        // You might need to set other headers depending on the server requirements
+        // 'Authorization': 'Bearer YOUR_TOKEN',
+        // 'Content-Type': 'multipart/form-data',
+      },
+    });
+    data = response.data;
+    console.log(response.data)
+  } catch (error: any) {
+    console.log(error.message)
+  }
+  return res.send(data)
+});
+
 export default router;

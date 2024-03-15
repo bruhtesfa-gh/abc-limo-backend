@@ -9,7 +9,6 @@ import CustomError from "../util/CustomeError";
 
 import nodemailer from "nodemailer";
 import { COMFIRMAION_EMAIL } from "../config/mail";
-import { Prisma } from "@prisma/client";
 
 export const postReservation = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
