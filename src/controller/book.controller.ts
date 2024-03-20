@@ -37,7 +37,7 @@ export const postReservation = catchAsync(
     await transporter.sendMail({
       from: process.env.EMAIL, // sender address
       to: book.email, // list of receivers
-      subject: "Limousine Service Reservation Confirmation & Details", // Subject line
+      subject: "Your Seattle Limo Service Booking Confirmation", // Subject line
       html: COMFIRMAION_EMAIL(book), // html body
     });
 

@@ -469,9 +469,9 @@ export const sendMail = (name: string, email = "ayalewemneteab@gmail.com", subje
                                                                 <td align="left" class="es-m-txt-l"
                                                                     style="padding:0;Margin:0;font-size:0px"><a
                                                                         target="_blank"
-                                                                        href="http://vermelhospiceinc.com"
+                                                                        href="${process.env.CLIENT_APP_URL}"
                                                                         style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#00356C;font-size:14px"><img
-                                                                            src="https://vermel-inc-v2.netlify.app/assets/logo_prev_ui.png"
+                                                                            src="${process.env.CLIENT_APP_URL}/mainlogo.jpg"
                                                                             alt="Logo"
                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
                                                                             height="40px" width="100px"
