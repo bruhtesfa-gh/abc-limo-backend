@@ -18,6 +18,14 @@ import path from "path";
 router.get("/", (req, res) => {
   res.send("Hello World!");
 });
+router.get("/test", async (req, res) => {
+  const user = await prisma.user.findMany({
+    where: {
+
+    }
+  });
+  return res.status(200).json(user);
+})
 router.use("/auth", authRouter);
 router.use("/blog", blogRouter);
 router.use("/book", bookRouter);

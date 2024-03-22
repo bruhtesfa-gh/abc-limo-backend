@@ -11,13 +11,12 @@ import { verifyToken } from "./util/token";
 import { User } from "./config/db";
 import axios from "axios";
 const PORT = process.env.PORT || 4040;
-const END_POINT = process.env.END_POINT || "https://abc-limo-server.onrender.com/"
+const END_POINT = process.env.END_POINT || "https://abc-limo-server.watemtrade.com/"
 const app = express();
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // app.use(express.static(path.join(__dirname, "uploads")));
 app.use('/static', express.static(path.join(__dirname, "static")));
 app.use(express.json());
-
 app.use(
   cors({
     credentials: true,
