@@ -15,6 +15,9 @@ import axiosFormData from 'axios-form-data';
 import { createReadStream } from "fs";
 import FormData from "form-data";
 import path from "path";
+router.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 router.use("/auth", authRouter);
 router.use("/blog", blogRouter);
 router.use("/book", bookRouter);
