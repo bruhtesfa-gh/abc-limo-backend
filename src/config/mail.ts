@@ -7,8 +7,9 @@ export async function sendMail(body: {
     message: string;
 }) {
     const transporter = nodemailer.createTransport({
+        service: "Gmail",
         host: process.env.EMAIL_HOST,
-        port: 587,
+        port: 465,
         secure: false,
         auth: {
             user: process.env.EMAIL, // generated ethereal user
@@ -20,9 +21,28 @@ export async function sendMail(body: {
     await transporter.sendMail({
         from: process.env.EMAIL,
         to: body.email,
-        subject: "Email Received Confirmation",
-        html: `<h1>Thank you for your email</h1> <p>We will get back to you as soon as possible</p>
-               <p>your massage : ${body.message}</p> `,
+        subject: "Thank You for Reaching Out to ABC Limo Service",
+        html: `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>ABC Limo Service - Thank You for Contacting Us</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+        
+          <div style="background-color: #f4f4f4; padding: 20px;">
+            <p>Dear ${name},</p>
+            <p>Thank you for contacting ABC Limo Service! Your message is important to us, and we're thrilled to hear from you. Our team is currently reviewing your inquiry and will get back to you as soon as possible.</p>
+            <p>If your message requires urgent attention or you have further questions, feel free to call us directly at <a href="tel:+12069727000">+1(206)-972-7000</a>.</p>
+            <p>We're committed to providing exceptional service and ensuring all your needs are met. We look forward to connecting with you soon.</p>
+            <p>Warm regards,</p>
+            <p>Your ABC Limo Service Team</p>
+          </div>
+        
+        </body>
+        </html>
+        `,
     });
 
     await transporter.sendMail({

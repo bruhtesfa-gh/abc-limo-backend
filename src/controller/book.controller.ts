@@ -24,8 +24,9 @@ export const postReservation = catchAsync(
       return next(new CustomError("reservation not created", 500));
     // send email to user that tells him that his reservation is created and we will contact him soon
     const transporter = nodemailer.createTransport({
+      service: "Gmail",
       host: process.env.EMAIL_HOST,
-      port: 587,
+      port: 465,
       secure: false,
       auth: {
         user: process.env.EMAIL, // generated ethereal user
