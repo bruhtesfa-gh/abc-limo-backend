@@ -27,14 +27,11 @@ export const uploadLoacalToMyS3 = async (filename: string): Promise<String> => {
                     ...form.getHeaders(),
                 },
             });
-            console.log(response.data)
             return response.data.url
         } catch (error: any) {
-            console.log(error.message)
             throw new Error(error.message);
         }
     } catch (error: any) {
-        console.log(error.message)
         throw new Error(error.message);
     }
 }

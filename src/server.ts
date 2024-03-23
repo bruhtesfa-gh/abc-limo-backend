@@ -42,20 +42,23 @@ app.use(cookieParser());
 app.use(passport.initialize({}));
 app.use(router);
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname + "/static/index.html"));
+  return res.status(404).json({
+    status: "fail",
+    message: "Resource not found",
+  });
 });
 app.use(rateLimit());
 app.listen(PORT, () => {
   console.log("Server started on port " + PORT);
   // send test request every fifve mininute to keep server alive
-  setInterval(async () => {
-    try {
-      await axios.get(END_POINT + '/alive');
-    } catch (error) {
-      console.log(error);
-    }
+  // setInterval(async () => {
+  //   try {
+  //     await axios.get(END_POINT + '/alive');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
-  }, 1000 * 60 * 5)
+  // }, 1000 * 60 * 5)
 });
 passportLocal(passport);
 //global error handler
@@ -64,18 +67,11 @@ process.on("unhandledRejection", (err: Error) => {
   console.log(err.name, err.message);
   console.log("UNHANDLED REJECTION! 💥 Shutting down...");
   process.exit(1);
-  // app.close(() => {
-  //   process.exit(1);
-  // }
-  // );
+
 });
 
 process.on("uncaughtException", (err: Error) => {
   console.log(err.name, err.message);
   console.log("UNCAUGHT EXCEPTION! 💥 Shutting down...");
   process.exit(1);
-  // app.close(() => {
-  //   process.exit(1);
-
-  // });
 });

@@ -12,7 +12,6 @@ const uploadImageToCloudinary = async (imagePath: string) => {
     const result = await cloudinary.uploader.upload(imagePath);
     return result.url;
   } catch (error) {
-    console.error(error);
   }
 };
 export default uploadImageToCloudinary;

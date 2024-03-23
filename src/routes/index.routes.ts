@@ -10,16 +10,14 @@ import { catchAsync } from "../util/error";
 import prisma, { Blog, Book, User, Vehicle } from "../config/db";
 import { isAuth } from "../util/auth";
 import { sendMail } from "../config/mail";
-import axios from "axios";
-import axiosFormData from 'axios-form-data';
-import { createReadStream } from "fs";
-import FormData from "form-data";
-import path from "path";
+
 router.get("/", (req, res) => {
-  res.send("Hello World!");
+  return res.status(200).json({
+    message: "Welcome to ABC Limo",
+  });
 });
-router.get("/test", async (req, res) => {
-  const user = await prisma.user.findMany({
+router.get("/test-db", async (req, res) => {
+  const user = await prisma.book.findMany({
     where: {
 
     }
@@ -78,15 +76,11 @@ router.get("/stat", async (req, res) => {
     numberOfNewReservation,
   });
 });
-router.get(
-  "/me",
-  catchAsync(isAuth),
-  catchAsync(async (req: Request, res: Response) => {
-    return res.json(req.user);
-  })
+router.get("/me", catchAsync(isAuth), catchAsync(async (req: Request, res: Response) => {
+  return res.json(req.user);
+})
 );
 router.get("/init", async (req, res) => {
-  console.log("init");
   try {
     const user = await prisma.user.findMany({
       where: {
@@ -106,7 +100,6 @@ router.get("/init", async (req, res) => {
     return res.status(200).json(newUser);
 
   } catch (error) {
-    console.log(error);
     return res.status(500).send(error);
     // throw new Error(error);
   }
@@ -123,6 +116,5 @@ router.get("/alive", async (req, res) => {
   }
   return res.status(200).json({ message: "Server is alive" });
 })
-
 
 export default router;
