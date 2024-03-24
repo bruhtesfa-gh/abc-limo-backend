@@ -9,6 +9,7 @@ import CustomError from "../util/CustomeError";
 
 import nodemailer from "nodemailer";
 import { COMFIRMAION_EMAIL } from "../config/mail";
+import moment from "moment-timezone";
 
 export const postReservation = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -50,7 +51,7 @@ export const postReservation = catchAsync(
         <p>Vehicle: ${book.vehicle.name}</p>
         <p>Pickup: ${book.fromAddress}</p>
         <p>Dropoff: ${book.toAddress}</p>
-        <p>Date: ${book.journeyDate}</p>
+        <p>Date: ${moment(book.journeyDate).tz("America/Los_Angeles").format('ddd MMM DD YYYY hh:mm A z')}</p>
         <p>Number of Passengers: ${book.personCount}</p>
         <a href="${process.env.ADMIN_PANEL_END_POINT}reservations/${book.id}">Click here to view the reservation</a>`;
       }

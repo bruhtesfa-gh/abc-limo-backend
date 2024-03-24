@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import nodemailer from "nodemailer";
 
 export async function sendMail(body: {
@@ -7,7 +8,6 @@ export async function sendMail(body: {
     message: string;
 }) {
     try {
-
         const transporter = nodemailer.createTransport({
             service: "Gmail",
             host: process.env.EMAIL_HOST,
@@ -381,9 +381,7 @@ export async function sendMail(body: {
         
                                                                                                                         <p class=t192
                                                                                                                             style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
-                                                                                                                            Date:
-                                                                                                                            ${new
-                    Date().toLocaleDateString()}
+                                                                                                                            
                                                                                                                         </p>
                                                                                                                     </td>
                                                                                                                 </tr>
@@ -1416,9 +1414,7 @@ export const COMFIRMAION_EMAIL = (data: any) => {
 
                                                                                                                 <p class=t192
                                                                                                                     style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:14px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#333333;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">
-                                                                                                                    Date:
-                                                                                                                    ${new
-            Date().toLocaleDateString()}
+                                                                                                                    
                                                                                                                 </p>
                                                                                                             </td>
                                                                                                         </tr>
@@ -2044,7 +2040,7 @@ export const COMFIRMAION_EMAIL = (data: any) => {
                                                                                                                                         style="width:600px;">
 
 
-                                                                                                                                        <p class=t449 style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#242424;text-align:left;mso-line-height-rule:exactly;mso-text-raise:3px;"> ${data.journeyDate.toDateString()}
+                                                                                                                                        <p class=t449 style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#242424;text-align:left;mso-line-height-rule:exactly;mso-text-raise:3px;"> ${moment(data.journeyDate).tz("America/Los_Angeles").format('ddd MMM DD YYYY')}
                                                                                                                                         </p>
                                                                                                                                     </td>
                                                                                                                                 </tr>
@@ -2065,7 +2061,7 @@ export const COMFIRMAION_EMAIL = (data: any) => {
                                                                                                                                         style="width:600px;">
 
 
-                                                                                                                                        <p class=t449 style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#242424;text-align:left;mso-line-height-rule:exactly;mso-text-raise:3px;"> ${data.journeyDate.toLocaleTimeString()}
+                                                                                                                                        <p class=t449 style="font-family:BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif,'Albert Sans';line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;letter-spacing:-0.56px;direction:ltr;color:#242424;text-align:left;mso-line-height-rule:exactly;mso-text-raise:3px;"> ${moment(data.journeyDate).tz("America/Los_Angeles").format('hh:mm A z')}
                                                                                                                                         </p>
                                                                                                                                     </td>
                                                                                                                                 </tr>

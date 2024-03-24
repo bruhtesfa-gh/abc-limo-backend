@@ -13,7 +13,7 @@ import { sendMail } from "../config/mail";
 
 router.get("/", (req, res) => {
   return res.status(200).json({
-    message: "Welcome to ABC Limo",
+    message: "Welcome to ABC Limo Service",
   });
 });
 router.get("/test-db", async (req, res) => {

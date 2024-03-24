@@ -21,6 +21,7 @@ app.use(
   cors({
     credentials: true,
     origin: [
+      "https://abc-limousine.com",
       "https://abc-limo.netlify.app",
       "https://abc-limo-admin.netlify.app",
       "https://limo-admin.onrender.com",

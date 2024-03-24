@@ -8,7 +8,7 @@ const BookPostschema = Joi.object({
   phoneNumber: Joi.string().required(),
   luggageCount: Joi.number().required().min(0).integer(),
   personCount: Joi.number().required().min(0).integer(),
-  journeyDate: Joi.date().required(),
+  journeyDate: Joi.string().required(),
   description: Joi.string().required(),
   driverGender: Joi.string().required(),
   vehicleId: Joi.string().required(),
